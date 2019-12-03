@@ -1,6 +1,11 @@
 const Sequel = require('sequelize');
+const express=require('express');
+const app = express();
+
 const db = require('./db.js');
 const fs = require('fs');
+
+app.listen(8080);
 
 const readData = fs.readFileSync('./moviedata.json', 'utf8');
 const movieData = JSON.parse(readData);
@@ -98,3 +103,8 @@ db.sync({ force: true }).then(() => {
     .catch((err) => {
         console.log(err);
     });
+
+module.exports = {
+    app,
+    db
+}
